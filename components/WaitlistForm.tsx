@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
 interface WaitlistFormProps {
@@ -13,6 +13,17 @@ export default function WaitlistForm({ variant = 'hero' }: WaitlistFormProps) {
   const [errorMsg, setErrorMsg] = useState('');
 
   const isHero = variant === 'hero';
+
+  useEffect(() => {
+    try {
+      const savedEmail = localStorage.getItem('screenshot_vault_waitlist_email');
+      if (savedEmail) {
+        setStatus('success');
+      }
+    } catch (e) {
+      console.warn('Could not read from localStorage:', e);
+    }
+  }, []);
 
   const validateEmail = (email: string) => {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
@@ -43,9 +54,10 @@ export default function WaitlistForm({ variant = 'hero' }: WaitlistFormProps) {
         return;
       }
 
+      const cleanEmail = email.toLowerCase().trim();
       const { error } = await supabase
         .from('waitlist')
-        .insert([{ email: email.toLowerCase().trim() }]);
+        .insert([{ email: cleanEmail }]);
 
       if (error) {
         // Log all Supabase error fields explicitly — the object itself
@@ -59,6 +71,11 @@ export default function WaitlistForm({ variant = 'hero' }: WaitlistFormProps) {
 
         if (error.code === '23505') {
           // Unique constraint violation — already on the list
+          try {
+            localStorage.setItem('screenshot_vault_waitlist_email', cleanEmail);
+          } catch (err) {
+            console.warn('Could not write to localStorage:', err);
+          }
           setStatus('duplicate');
         } else if (error.code === '42P01') {
           // Table does not exist
@@ -75,6 +92,11 @@ export default function WaitlistForm({ variant = 'hero' }: WaitlistFormProps) {
         return;
       }
 
+      try {
+        localStorage.setItem('screenshot_vault_waitlist_email', cleanEmail);
+      } catch (err) {
+        console.warn('Could not write to localStorage:', err);
+      }
       setStatus('success');
     } catch (err) {
       console.error('Unexpected error:', err);

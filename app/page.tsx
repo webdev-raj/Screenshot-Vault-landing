@@ -432,8 +432,8 @@ export default function Home() {
 
             <p
               style={{
-                fontSize: 'clamp(1rem, 2vw, 1.1875rem)',
-                lineHeight: 1.7,
+                fontSize: 'clamp(1rem, 2vw, 1.15rem)',
+                lineHeight: 1.6,
                 color: '#8B8BA0',
                 marginBottom: '40px',
                 maxWidth: '480px',
@@ -589,7 +589,7 @@ export default function Home() {
                 Lost in your camera roll
               </h3>
               <p style={{ fontSize: '0.9375rem', color: '#8B8BA0', lineHeight: 1.65 }}>
-                You saved that restaurant name, that tracking number, that code snippet. Now you&apos;re 
+                You saved that restaurant name, that tracking number, that code snippet. Now you&apos;re
                 scrolling through 3,000 photos at 11pm trying to find it. Sound familiar?
               </p>
             </div>
@@ -634,7 +634,7 @@ export default function Home() {
                 Search by what it says
               </h3>
               <p style={{ fontSize: '0.9375rem', color: '#8B8BA0', lineHeight: 1.65 }}>
-                Type a few words — any words from inside the screenshot — and Screenshot Vault surfaces 
+                Type a few words — any words from inside the screenshot — and Screenshot Vault surfaces
                 exactly what you&apos;re looking for in under a second. Like Ctrl+F for your whole phone.
               </p>
             </div>
@@ -688,7 +688,7 @@ export default function Home() {
                 100% on-device, private
               </h3>
               <p style={{ fontSize: '0.9375rem', color: '#8B8BA0', lineHeight: 1.65 }}>
-                Your screenshots contain your most personal moments. Screenshot Vault runs entirely 
+                Your screenshots contain your most personal moments. Screenshot Vault runs entirely
                 on your phone — nothing is ever uploaded, shared, or sent anywhere. Period.
               </p>
             </div>
@@ -825,13 +825,14 @@ export default function Home() {
         }}
       >
         <div style={{ maxWidth: '1120px', margin: '0 auto' }}>
-          <div style={{ marginBottom: '72px' }}>
-            <div className="section-divider" style={{ marginBottom: '20px' }} />
+          <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+            <div className="section-divider" style={{ margin: '0 auto 20px' }} />
             <h2
               style={{
                 fontSize: 'clamp(1.875rem, 4vw, 2.75rem)',
                 fontWeight: 800,
                 letterSpacing: '-0.03em',
+                lineHeight: 1.05,
                 color: '#F0F0F5',
                 marginBottom: '16px',
               }}
@@ -845,6 +846,7 @@ export default function Home() {
                 fontSize: '1.0625rem',
                 color: '#8B8BA0',
                 maxWidth: '400px',
+                margin: '0 auto',
                 lineHeight: 1.6,
               }}
             >
@@ -910,16 +912,14 @@ export default function Home() {
                     width: '44px',
                     height: '44px',
                     borderRadius: '12px',
-                    background: `rgba(${
-                      feature.accent === '#6C8CFF' ? '108, 140, 255' :
-                      feature.accent === '#B89DFF' ? '184, 157, 255' :
-                      '126, 206, 196'
-                    }, 0.1)`,
-                    border: `1px solid rgba(${
-                      feature.accent === '#6C8CFF' ? '108, 140, 255' :
-                      feature.accent === '#B89DFF' ? '184, 157, 255' :
-                      '126, 206, 196'
-                    }, 0.2)`,
+                    background: `rgba(${feature.accent === '#6C8CFF' ? '108, 140, 255' :
+                        feature.accent === '#B89DFF' ? '184, 157, 255' :
+                          '126, 206, 196'
+                      }, 0.1)`,
+                    border: `1px solid rgba(${feature.accent === '#6C8CFF' ? '108, 140, 255' :
+                        feature.accent === '#B89DFF' ? '184, 157, 255' :
+                          '126, 206, 196'
+                      }, 0.2)`,
                     display: 'flex',
                     alignItems: 'center',
                     justifyContent: 'center',
@@ -1042,8 +1042,8 @@ export default function Home() {
               margin: '0 auto 56px',
             }}
           >
-            Screenshots hold your most sensitive information — bank statements, medical results, 
-            private conversations, passwords you copied. We built Screenshot Vault on a simple 
+            Screenshots hold your most sensitive information — bank statements, medical results,
+            private conversations, passwords you copied. We built Screenshot Vault on a simple
             promise: <strong style={{ color: '#F0F0F5', fontWeight: 600 }}>nothing leaves your device.</strong> Ever.
             The OCR runs on your phone. The AI runs on your phone. The search index lives on your phone.
             We have zero access to your data — not because of a policy, but because of how it&apos;s built.

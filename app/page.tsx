@@ -817,6 +817,254 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ── AI CATEGORIZATION ────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '120px 24px',
+          // background: 'rgba(108, 140, 255, 0.02)',
+          borderTop: '1px solid rgba(255,255,255,0.05)',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        {/* Ambient glow */}
+        <div
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: '50%',
+            transform: 'translate(-50%, -50%)',
+            width: '800px',
+            height: '500px',
+            borderRadius: '50%',
+            background: 'radial-gradient(ellipse, rgba(108, 140, 255, 0.06) 0%, transparent 70%)',
+            filter: 'blur(60px)',
+            pointerEvents: 'none',
+          }}
+        />
+
+        <div style={{ maxWidth: '1120px', margin: '0 auto', position: 'relative', zIndex: 1 }}>
+          {/* Section header */}
+          <div style={{ textAlign: 'center', marginBottom: '72px' }}>
+            <div className="section-divider" style={{ margin: '0 auto 20px' }} />
+            <h2
+              style={{
+                fontSize: 'clamp(1.875rem, 4vw, 2.75rem)',
+                fontWeight: 800,
+                letterSpacing: '-0.03em',
+                color: '#F0F0F5',
+                marginBottom: '16px',
+                lineHeight: 1.2,
+              }}
+            >
+              Every screenshot, sorted{' '}<br/>
+              <span className="gradient-text">before you even ask</span>
+            </h2>
+            <p
+              style={{
+                fontSize: '1.0625rem',
+                color: '#8B8BA0',
+                maxWidth: '890px',
+                margin: '0 auto',
+                lineHeight: 1.65,
+              }}
+            >
+              Screenshot Vault doesn&apos;t just save your screenshots — it understands them. Every
+              one gets an AI-generated title and category the moment it&apos;s captured.
+            </p>
+          </div>
+
+          {/* Category cards grid */}
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '14px',
+            }}
+            className="category-grid"
+          >
+            {[
+              {
+                emoji: '🧾',
+                label: 'Receipts',
+                count: 42,
+                accent: '#4ADE80',
+                rgb: '74, 222, 128',
+              },
+              {
+                emoji: '💬',
+                label: 'Chats',
+                count: 86,
+                accent: '#6C8CFF',
+                rgb: '108, 140, 255',
+              },
+              {
+                emoji: '📱',
+                label: 'Social Posts',
+                count: 37,
+                accent: '#F472B6',
+                rgb: '244, 114, 182',
+              },
+              {
+                emoji: '💼',
+                label: 'Job Listings',
+                count: 14,
+                accent: '#FBBF24',
+                rgb: '251, 191, 36',
+              },
+              {
+                emoji: '📰',
+                label: 'Articles',
+                count: 28,
+                accent: '#22D3EE',
+                rgb: '34, 211, 238',
+              },
+              {
+                emoji: '💻',
+                label: 'Code',
+                count: 19,
+                accent: '#B89DFF',
+                rgb: '184, 157, 255',
+              },
+              {
+                emoji: '⭐',
+                label: 'Favorites',
+                count: 23,
+                accent: '#FB923C',
+                rgb: '251, 146, 60',
+              },
+              {
+                emoji: '📂',
+                label: 'Other',
+                count: 31,
+                accent: '#8B8BA0',
+                rgb: '139, 139, 160',
+              },
+            ].map((cat, i) => (
+              <div
+                key={i}
+                className="glass-card category-card"
+                style={{
+                  borderRadius: '18px',
+                  padding: '28px 24px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '14px',
+                  position: 'relative',
+                  overflow: 'hidden',
+                  cursor: 'default',
+                  animationDelay: `${i * 60}ms`,
+                }}
+                onMouseEnter={(e) => {
+                  const card = e.currentTarget as HTMLDivElement;
+                  card.style.borderColor = `rgba(${cat.rgb}, 0.35)`;
+                  card.style.boxShadow = `0 0 30px rgba(${cat.rgb}, 0.08), 0 8px 32px rgba(0,0,0,0.3)`;
+                  card.style.transform = 'translateY(-3px)';
+                }}
+                onMouseLeave={(e) => {
+                  const card = e.currentTarget as HTMLDivElement;
+                  card.style.borderColor = '';
+                  card.style.boxShadow = '';
+                  card.style.transform = '';
+                }}
+              >
+                {/* Subtle corner glow */}
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '-20px',
+                    right: '-20px',
+                    width: '80px',
+                    height: '80px',
+                    borderRadius: '50%',
+                    background: `radial-gradient(circle, rgba(${cat.rgb}, 0.12) 0%, transparent 70%)`,
+                    pointerEvents: 'none',
+                  }}
+                />
+
+                {/* Icon */}
+                <div
+                  style={{
+                    width: '48px',
+                    height: '48px',
+                    borderRadius: '14px',
+                    background: `rgba(${cat.rgb}, 0.1)`,
+                    border: `1px solid rgba(${cat.rgb}, 0.2)`,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    fontSize: '22px',
+                    flexShrink: 0,
+                    transition: 'all 0.2s ease',
+                  }}
+                >
+                  {cat.emoji}
+                </div>
+
+                {/* Label & count */}
+                <div>
+                  <p
+                    style={{
+                      fontSize: '1rem',
+                      fontWeight: 700,
+                      color: '#F0F0F5',
+                      letterSpacing: '-0.02em',
+                      marginBottom: '4px',
+                    }}
+                  >
+                    {cat.label}
+                  </p>
+                  <p
+                    style={{
+                      fontSize: '0.8125rem',
+                      color: cat.accent,
+                      fontWeight: 600,
+                      fontVariantNumeric: 'tabular-nums',
+                    }}
+                  >
+                    {cat.count} screenshots
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Tagline */}
+          <p
+            style={{
+              textAlign: 'center',
+              marginTop: '48px',
+              fontSize: '1.0625rem',
+              color: '#55556A',
+              fontStyle: 'italic',
+              letterSpacing: '-0.01em',
+            }}
+          >
+            No manual tagging. No folders.{' '}
+            <span style={{ color: '#8B8BA0', fontStyle: 'normal', fontWeight: 600 }}>
+              It just knows.
+            </span>
+          </p>
+        </div>
+
+        <style>{`
+          @media (max-width: 768px) {
+            .category-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+            }
+          }
+          @media (max-width: 480px) {
+            .category-grid {
+              grid-template-columns: repeat(2, 1fr) !important;
+              gap: 10px !important;
+            }
+            .category-card {
+              padding: 20px 16px !important;
+            }
+          }
+        `}</style>
+      </section>
+
       {/* ── FEATURES GRID ────────────────────────────────────────────────────── */}
       <section
         style={{
